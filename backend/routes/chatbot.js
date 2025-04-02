@@ -35,7 +35,7 @@ function authMiddleware(req, res, next) {
     }
 }
 
-// Store User Message & AI Response
+ 
 router.post('/', authMiddleware, async (req, res) => {
     try {
         const userMessage = req.body.message;
@@ -54,7 +54,7 @@ router.post('/', authMiddleware, async (req, res) => {
     }
 });
 
-// Fetch Chat History
+ 
 router.get('/history', authMiddleware, async (req, res) => {
     try {
         const history = await Chat.find({ userId: req.userId }).sort({ timestamp: 1 });
@@ -73,10 +73,10 @@ router.get('/history', authMiddleware, async (req, res) => {
         res.status(500).json({ error: "Could not fetch chat history." });
     }
 });
-// DELETE Chat History
+ 
 router.delete('/history', authMiddleware, async (req, res) => {
     try {
-        await Chat.deleteMany({ userId: req.userId }); // Remove all user messages
+        await Chat.deleteMany({ userId: req.userId }); 
         res.json({ message: "Chat history deleted successfully" });
     } catch (err) {
         console.error(err);
