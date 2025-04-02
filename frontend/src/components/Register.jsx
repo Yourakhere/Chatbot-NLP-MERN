@@ -1,19 +1,41 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // ✅ Corrected import
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const navigate = useNavigate(); // ✅ Corrected usage
+    const navigate = useNavigate();
 
     const handleRegister = async () => {
         try {
             await axios.post('http://localhost:5000/auth/register', { username, password });
-            alert("Registered successfully! Please log in.");
-            navigate('/'); // ✅ Redirect to login page
+            
+             
+            toast.success("✅ Registered successfully! Please log in.", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                theme: "colored",
+            });
+
+            setTimeout(() => navigate('/'), 3000);
         } catch (error) {
-            alert("Registration failed. Try again.");
+             
+            toast.error("❌ Registration failed. Try again.", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                theme: "colored",
+            });
         }
     };
 
@@ -50,15 +72,17 @@ const Register = () => {
                     Register
                 </button>
 
-                <button className="text-center text-gray-600 mt-4" onClick={() => navigate('/')} // ✅ Redirects correctly
-                          >Already have an account ? Login</button>
-
-              
+                <button 
+                    className="text-center text-gray-600 mt-4" 
+                    onClick={() => navigate('/')}
+                >
+                    Already have an account? Login
+                </button>
             </div>
+ 
+            <ToastContainer />
         </div>
     );
 };
 
 export default Register;
-
- 

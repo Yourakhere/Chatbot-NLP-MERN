@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import chatbotImage from "../assets/chatbot.png";  
-
+ import { useNavigate } from "react-router-dom"; 
 const Chat = () => {
   const [message, setMessage] = useState("");
   const [chat, setChat] = useState([]);
   const [isListening, setIsListening] = useState(false);
-  const [isChatOpen, setIsChatOpen] = useState(false); // Controls Chat Visibility
-  const [darkMode, setDarkMode] = useState(true); // Dark Mode Toggle
-
+  const [isChatOpen, setIsChatOpen] = useState(false); 
+  const [darkMode, setDarkMode] = useState(true); 
+  const navigate = useNavigate(); // ✅ Initialize navigate
+  
+  
+  
   useEffect(() => {
     if (isChatOpen) fetchChatHistory();
   }, [isChatOpen]);
@@ -123,6 +126,7 @@ const Chat = () => {
   const handleLogout = () => {
     localStorage.removeItem('token');
     setToken(null);
+    navigate("/");
   };
 
   return (
@@ -136,9 +140,14 @@ const Chat = () => {
       >
         {darkMode ? "🌞 Light Mode" : "🌙 Dark Mode"}
       </button>
-   
-       <button onClick={handleLogout}  className="absolute top-20 right-5 px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg"
-     >Logout</button>
+
+   <button 
+     onClick={handleLogout}  
+     className="absolute top-20 right-5 px-4 py-2 bg-red-600 hover:bg-red-500 text-white rounded-lg"
+     >
+     Logout
+     </button>
+     
       {/* Start Chat Button */}
       {!isChatOpen && (
         <button
@@ -207,9 +216,6 @@ const Chat = () => {
 };
 
 export default Chat;
-
-
-
 
 
  
