@@ -11,7 +11,7 @@ const Register = () => {
 
     const handleRegister = async () => {
         try {
-            await axios.post('http://localhost:5000/auth/register', { username, password });
+            await axios.post('https://chat-nlp-backend.vercel.app/auth/register', { username, password });
             
              
             toast.success("✅ Registered successfully! Please log in.", {
@@ -86,3 +86,4 @@ const Register = () => {
 };
 
 export default Register;
+
