@@ -10,7 +10,7 @@ const Login = ({ setToken }) => {
 
     const handleLogin = async () => {
         try {
-            const res = await axios.post('https://chat-nlp-backend.vercel.app/auth/login', { username, password });//http://localhost:5000
+            const res = await axios.post('https://chat-nlp-backend.vercel.app/auth/login', { username, password });
             localStorage.setItem('token', res.data.token);
             setToken(res.data.token);
             toast.success("Login successful! 🎉");  
