@@ -8,7 +8,7 @@ const Chat = () => {
   const [isListening, setIsListening] = useState(false);
   const [isChatOpen, setIsChatOpen] = useState(false); 
   const [darkMode, setDarkMode] = useState(true); 
-  const navigate = useNavigate(); // ✅ Initialize navigate
+  const navigate = useNavigate(); 
   
   
   
@@ -24,7 +24,7 @@ const Chat = () => {
     }
 
     try {
-      const res = await fetch("http://localhost:5000/chat/history", {
+      const res = await fetch("https://chat-nlp-backend.vercel.app/chat/history", {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -52,7 +52,7 @@ const Chat = () => {
     }
 
     try {
-      const res = await fetch("http://localhost:5000/chat", {
+      const res = await fetch("https://chat-nlp-backend.vercel.app/chat", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -110,7 +110,7 @@ const Chat = () => {
     }
 
     try {
-      const res = await fetch("http://localhost:5000/chat/history", {
+      const res = await fetch("https://chat-nlp-backend.vercel.app/chat/history", {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -216,6 +216,7 @@ const Chat = () => {
 };
 
 export default Chat;
+
 
 
  
